@@ -1,0 +1,23 @@
+<div class="flex justify-content-center align-items-center mat-drawer-content">
+    <div class="m-auto w-100">
+        <mat-form-field *ngIf="!openCamera" class="w-custom" appearance="outline">
+            <mat-label>Enter Vehicle Number Manually</mat-label>
+            <input matInput type="text" [(ngModel)]="vehicleNumber">
+            @if (vehicleNumber) {
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="vehicleNumber=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            }
+            <mat-icon matSuffix>keyboard</mat-icon>
+            <mat-hint>HR02X0000</mat-hint>
+        </mat-form-field>
+        <div *ngIf="openCamera" class="flex" style="border-radius: 16px; overflow: hidden;">
+            <webcam (initError)="handleInitError($event)"></webcam>
+        </div>
+        <div class="w-100 flex mt-5">
+            <button class="m-auto" mat-fab extended (click)="onOffCamera()">
+                <mat-icon>photo_camera</mat-icon> {{openCamera? 'On' : 'Off'}} Camera To Scan
+            </button>
+        </div>
+    </div>
+</div>

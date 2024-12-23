@@ -1,1 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.wrapper-container {
+  
+  .font-family-cursive {
+    font-family: cursive !important;
+  }
+
+  .m-auto {
+    margin: auto;
+  }
+
+  .mt-5 {
+    margin-top: 2rem;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .h-full {
+    height: 100%;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  app-header, app-footer {
+    .mat-toolbar-row, .mat-toolbar-single-row {
+      height: var(--mat-toolbar-standard-height, 50px) !important;
+    }
+  }
+
+  .sidebar-container, mat-drawer-content {
+    width: 100%;
+    height: calc(100vh - 100px);
+  }
+
+  .sidebar-container mat-drawer {
+      border-radius: 0 !important ;
+
+    .mat-drawer-inner-container {
+        background-color: #ebebeb;
+    }
+
+    mat-drawer-content {
+      display: flex;
+
+      mat-spinner {
+        width: 60px !important;
+        height: 60px !important;
+        margin: auto;
+      }
+    }
+  }
+}
+
+:root {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: #ebebeb,
+      container-text-color: #1c1c1c,
+    )
+  );
+}

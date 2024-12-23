@@ -1,0 +1,10 @@
+.w-custom {
+  width: 90vw;
+}
+
+@media (min-width: 700px) {
+  .w-custom {
+    width: 40vw !important;
+    max-width: 450px !important;
+  }
+}
