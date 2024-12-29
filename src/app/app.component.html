@@ -2,12 +2,15 @@
     <app-header [parentRef]="this" (toggleClick)="drawer.toggle()"></app-header>
     <mat-drawer-container class="sidebar-container" [hasBackdrop]="true">
         <mat-drawer #drawer mode="over">
-            <mat-selection-list matListItemIcon #menuList [hideSingleSelectionIndicator]="true" [multiple]="false">
-                    @for (option of menuOptions; track option) {
-                        <mat-icon>{{option.icon}}</mat-icon>
-                        <mat-list-option [value]="option.value" >{{option.name}}</mat-list-option>
-                    }
-                  </mat-selection-list>
+            <mat-nav-list style="padding: 5px;">
+                @for (option of menuOptions; track option) {
+                <a style="margin-top: 5px;" mat-list-item href="..." [routerLink]="option.RouterLink"
+                    routerLinkActive="isActive">
+                    <mat-icon matListItemIcon>{{option.icon}}</mat-icon>
+                    <div matListItemTitle>{{option.name}}</div>
+                </a>
+                }
+            </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>
             <mat-spinner *ngIf="loading"></mat-spinner>
