@@ -1,23 +1,39 @@
 <div class="flex justify-content-center align-items-center mat-drawer-content">
-    <div class="m-auto w-100">
-        <mat-form-field *ngIf="!openCamera" class="w-custom" appearance="outline">
-            <mat-label>Enter Vehicle Number Manually</mat-label>
-            <input matInput type="text" [(ngModel)]="vehicleNumber">
-            @if (vehicleNumber) {
-                <button matSuffix mat-icon-button aria-label="Clear" (click)="vehicleNumber=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            }
-            <mat-icon matSuffix>keyboard</mat-icon>
-            <mat-hint>HR02X0000</mat-hint>
-        </mat-form-field>
-        <div *ngIf="openCamera" class="flex" style="border-radius: 16px; overflow: hidden;">
-            <webcam (initError)="handleInitError($event)"></webcam>
-        </div>
-        <div class="w-100 flex mt-5">
-            <button class="m-auto" mat-fab extended (click)="onOffCamera()">
-                <mat-icon>photo_camera</mat-icon> {{openCamera? 'On' : 'Off'}} Camera To Scan
-            </button>
-        </div>
-    </div>
+    <mat-card appearance="raised">
+        <mat-card-content>
+            <div class="m-auto w-100">
+                <mat-form-field *ngIf="!openCamera && !webcamImage" class="w-custom" appearance="outline">
+                    <mat-label>Enter Vehicle Number Manually</mat-label>
+                    <input matInput type="text" [(ngModel)]="vehicleNumber" placeholder="DL 01 XX 0001">
+                    @if (vehicleNumber) {
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="vehicleNumber=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    }
+                    <mat-icon matSuffix>keyboard</mat-icon>
+                    <!-- <mat-hint></mat-hint> -->
+                </mat-form-field>
+                <div class="flex camera-area" *ngIf="openCamera || webcamImage">
+                    <webcam *ngIf="openCamera && !webcamImage" [height]="webcamHeight" [width]="webcamWidth" [trigger]="triggerObservable" 
+                      [imageQuality]="1" [mirrorImage]="mirrorImage" (imageCapture)="handleImage($event)" (initError)="handleInitError($event)">
+                    </webcam>
+                    <img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl"[height]="webcamHeight" [width]="webcamWidth" />
+                </div>
+                <div class="mt-3" *ngIf="!vehicleNumber && !openCamera && !webcamImage" style="position: relative">
+                    <mat-divider></mat-divider>
+                    <strong class="or">OR</strong>
+                </div>
+                <div class="w-100 flex align-items-center justify-content-center {{openCamera ? 'mt-3': 'mt-5'}}">
+                    <button *ngIf="!vehicleNumber" mat-fab extended (click)="onOffCamera()">
+                        <mat-icon>{{openCamera ? 'not_interested' : 'photo_camera'}}</mat-icon> {{webcamImage ? 'Re-Capture': openCamera ? 'Turn Off Camera' : 'Turn On Camera' }}
+                    </button>
+                    <button [class.ml-3]="!vehicleNumber" *ngIf="vehicleNumber || openCamera || webcamImage" mat-fab extended
+                        (click)="submit()">
+                        <mat-icon>{{vehicleNumber || webcamImage ? 'picture_as_pdf' : 'photo_camera'}}</mat-icon>
+                        {{vehicleNumber || webcamImage ? 'Save As Pdf' : 'Capture'}}
+                    </button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

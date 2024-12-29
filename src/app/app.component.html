@@ -2,7 +2,12 @@
     <app-header [parentRef]="this" (toggleClick)="drawer.toggle()"></app-header>
     <mat-drawer-container class="sidebar-container" [hasBackdrop]="true">
         <mat-drawer #drawer mode="over">
-            menubar optioms
+            <mat-selection-list matListItemIcon #menuList [hideSingleSelectionIndicator]="true" [multiple]="false">
+                    @for (option of menuOptions; track option) {
+                        <mat-icon>{{option.icon}}</mat-icon>
+                        <mat-list-option [value]="option.value" >{{option.name}}</mat-list-option>
+                    }
+                  </mat-selection-list>
         </mat-drawer>
         <mat-drawer-content>
             <mat-spinner *ngIf="loading"></mat-spinner>

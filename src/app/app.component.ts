@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { WebcamInitError, WebcamModule } from 'ngx-webcam';
 import { MatSharedModule } from './common/mat-shared/mat-shared.module';
 import { HeaderComponent } from './common/components/header/header.component';
 import { FooterComponent } from './common/components/footer/footer.component';
@@ -13,9 +12,12 @@ import { FooterComponent } from './common/components/footer/footer.component';
   imports: [CommonModule, RouterOutlet, MatSharedModule, HeaderComponent, FooterComponent],
 })
 export class AppComponent {
-  // title = 'vehicle-number-plate-scanner';
   isDesktop: boolean = true;
-  loading:boolean = true
+  loading:boolean = true;
+  menuOptions: any = [
+    {name: 'Scan', value: 'scan', icon: 'list_alt'},
+    {name: 'Scanned List', value: 'scanned-list', icon: 'camera_alt'},
+  ]
   
   constructor() { }
   

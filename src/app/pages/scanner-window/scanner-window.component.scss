@@ -1,10 +1,33 @@
 .w-custom {
-  width: 90vw;
+  width: 80vw;
+}
+
+.camera-area {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.or {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 5px;
+  background-color: #faf9fd !important;
 }
 
 @media (min-width: 700px) {
   .w-custom {
     width: 40vw !important;
     max-width: 450px !important;
+  }
+}
+
+:host::ng-deep {
+  .mat-mdc-card-content {
+    padding: 1rem !important;
+  }
+  webcam {
+    display: flex !important;
   }
 }

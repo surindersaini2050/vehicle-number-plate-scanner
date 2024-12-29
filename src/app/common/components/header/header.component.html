@@ -3,20 +3,9 @@
         (click)="toggleClick.emit($event)">
         <mat-icon>menu</mat-icon>
     </button>
-    <span><a href="/home"><img src="/favicon.png" alt="logo" [height]="parentRef?.topbarConfig?.logo?.height || 30" 
-        [width]="parentRef?.topbarConfig?.logo?.width || 30"></a></span>
+    <span><a href="/home"><img src="/favicon.png" alt="logo" [height]="parentRef?.topbarConfig?.logo?.height || 30"
+                [width]="parentRef?.topbarConfig?.logo?.width || 30"></a></span>
     <span class="font-family-cursive"><a href="/home" style="color: #1c1c1c;">Mega Scan</a></span>
     <span class="topbar-spacer"></span>
-    <!-- <ng-container *ngFor="let button of parentRef?.topbarConfig?.buttons">
-        <a *ngIf="button.type==='text'" mat-button [attr.routerLink]="button?.routerLink" (click)="button?.click()">{{button.label}}</a>
-        <button *ngIf="button.type==='icon'" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon>favorite</mat-icon>
-        </button>
-    </ng-container> -->
-    <a mat-button routerLink="/home">Home</a>
     <a mat-button routerLink="/about">About</a>
-    <a mat-button routerLink="/contact">Contact</a>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
 </mat-toolbar>
